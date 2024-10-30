@@ -42,7 +42,7 @@ while True:
     elif escolha == 2:
         login_sucesso = False
         while not login_sucesso:
-            login_L = input("\nDigite seu Úsuario: ")
+            login_L = input("\nDigite seu Usuário: ")
             senha_L = input("Digite sua Senha: ")
 
             for usuario in cadastros:
@@ -54,10 +54,10 @@ while True:
                     break
                 
             if not login_sucesso:
-                print("═══════════════════════════════════════════════\n")
+                print("\n═══════════════════════════════════════════════\n")
                 print("     ❌ Usuário ou Senha incorreto(s)\n")
                 print("═══════════════════════════════════════════════\n")
-
+                break
     else:
         print("\nOpção Invalida")
 
