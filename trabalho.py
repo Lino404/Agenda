@@ -1,3 +1,14 @@
+from colorama import Fore, Style, init
+init()
+
+color = {
+    'green' : Fore.GREEN,
+    'cyan' : Fore.CYAN,
+    'red' : Fore.RED,
+    'yellow' : Fore.YELLOW
+}
+
+
 ##sistema de cadastro
 cadastros = []
 
@@ -19,43 +30,43 @@ def carregar_cadastros():
 carregar_cadastros()
 
 while True:
-    print("\n╔════════ Cadastro e Login ════════╗")
-    print("║      Realizar Cadastro(1):       ║")
-    print('║        Efetuar login(2)          ║')
-    print('╚══════════════════════════════════╝')  
-    escolha = int(input("\nSelecione: "))
+    print(f"\n{color['yellow']}╔════════ Cadastro e Login ════════╗{Style.RESET_ALL}")
+    print(f"{color['yellow']}║      Realizar Cadastro(1):       ║{Style.RESET_ALL}")
+    print(f"{color['yellow']}║        Efetuar login(2)          ║{Style.RESET_ALL}")
+    print(f"{color['yellow']}╚══════════════════════════════════╝{Style.RESET_ALL}")
+    escolha = int(input(f"\n{color['cyan']}Selecione: {Style.RESET_ALL}"))
 
     if escolha == 1:
-        loginC = input("\nCadastre seu Usuário: ")
-        senhaC = input("Cadastre sua senha(Minimo 8 caracteres): ")
+        loginC = input(f"\n{color['cyan']}Cadastre seu Usuário: {Style.RESET_ALL}")
+        senhaC = input(f"{color['cyan']}Cadastre sua senha(Minimo 8 caracteres): {Style.RESET_ALL}")
 
         while len(senhaC) < 8:
-            senhaC = input("Digite uma senha com no minimo 8 caracteres: ")
+            senhaC = input(f"{color['red']}Senha Curta! Digite uma senha com no minimo 8 caracteres: {Style.RESET_ALL}")
         
         salvar_cadastro(loginC, senhaC)
         cadastros.append({'login': loginC, 'senha': senhaC})
         print("\n═══════════════════════════════════════════\n")
-        print("   ✅ Cadastro realizado com sucesso!\n")
+        print(f"{color['green']}   ✅ Cadastro realizado com sucesso!{Style.RESET_ALL}\n")
         print("═══════════════════════════════════════════\n")
         login_sucesso = True
 
     elif escolha == 2:
         login_sucesso = False
         while not login_sucesso:
-            login_L = input("\nDigite seu Usuário: ")
-            senha_L = input("Digite sua Senha: ")
+            login_L = input(f"\n{color['cyan']}Digite seu Usuário: {Style.RESET_ALL}")
+            senha_L = input(f"{color['cyan']}Digite sua Senha: {Style.RESET_ALL}")
 
             for usuario in cadastros:
                 if usuario["login"] == login_L and usuario["senha"] == senha_L:
                     print("\n═══════════════════════════════════════════\n")
-                    print("    🎉 Login realizado com sucesso!\n")
+                    print(f"{color['green']}   🎉 Login realizado com sucesso!{Style.RESET_ALL}\n")
                     print("═══════════════════════════════════════════\n")
                     login_sucesso = True
                     break
                 
             if not login_sucesso:
                 print("\n═══════════════════════════════════════════════\n")
-                print("     ❌ Usuário ou Senha incorreto(s)\n")
+                print(f"{color['red']}     ❌ Usuário ou Senha incorreto(s){Style.RESET_ALL}\n")
                 print("═══════════════════════════════════════════════\n")
                 break
     else:
@@ -68,14 +79,14 @@ while True:
 cadastro_atividades = []
 
 def menu():
-    print("╔═════════════ MENU ═════════════╗")
-    print("║  1. Cadastrar nova atividade   ║")
-    print("║  2. Editar atividade           ║")
-    print("║  3. Excluir atividade          ║")
-    print("║  4. Visualizar atividades      ║")
-    print("║  5. Sair                       ║")
-    print("╚════════════════════════════════╝")
-    return input("Escolha uma opção: ")
+    print(f"{color['yellow']}╔═════════════ MENU ═════════════╗{Style.RESET_ALL}")
+    print(f"{color['yellow']}║  1. Cadastrar nova atividade   ║{Style.RESET_ALL}")
+    print(f"{color['yellow']}║  2. Editar atividade           ║{Style.RESET_ALL}")
+    print(f"{color['yellow']}║  3. Excluir atividade          ║{Style.RESET_ALL}")
+    print(f"{color['yellow']}║  4. Visualizar atividades      ║{Style.RESET_ALL}")
+    print(f"{color['yellow']}║  5. Sair                       ║{Style.RESET_ALL}")
+    print(f"{color['yellow']}╚════════════════════════════════╝{Style.RESET_ALL}")
+    return input(f"{color['cyan']}Escolha uma opção: {Style.RESET_ALL}")
 
 def salvar_atividades():
     # Salva as atividades no arquivo txt
@@ -93,72 +104,72 @@ def carregar_atividades():
         pass
 
 def cadastrar_atividade():
-    titulo = input("Título da atividade: ")
-    descricao = input("Descrição: ")
-    data_inicio = input("Data de início: ")
-    data_fim = input("Data de entrega: ")
-    prioridade = input("Nível de prioridade (Baixa, Média, Alta): ")
+    titulo = input(f"{color['yellow']}Título da atividade: {Style.RESET_ALL}")
+    descricao = input(f"{color['yellow']}Descrição: {Style.RESET_ALL}")
+    data_inicio = input(f"{color['yellow']}Data de início: {Style.RESET_ALL}")
+    data_fim = input(f"{color['yellow']}Data de entrega: {Style.RESET_ALL}")
+    prioridade = input(f"{color['yellow']}Nível de prioridade (Baixa, Média, Alta): {Style.RESET_ALL}")
     cadastro_atividades.append([titulo, descricao, data_inicio, data_fim, prioridade])
     salvar_atividades()
-    print("Atividade cadastrada com sucesso!")
+    print(f"{color['green']}Atividade cadastrada com sucesso!{Style.RESET_ALL}")
 
 def editar_atividade():
     try:
         for i, atividade in enumerate(cadastro_atividades, 1):
-            print(f"\nAtividade {i}:")
-            print(f"  Título: {atividade[0]}")
-            print(f"  Descrição: {atividade[1]}")
-            print(f"  Data de Início: {atividade[2]}")
-            print(f"  Data de Fim: {atividade[3]}")
-            print(f"  Prioridade: {atividade[4]}")
+            print(f"\n{color['yellow']}Atividade {i}:{Style.RESET_ALL}")
+            print(f"  {color['yellow']}Título: {atividade[0]}{Style.RESET_ALL}")
+            print(f"  {color['yellow']}Descrição: {atividade[1]}{Style.RESET_ALL}")
+            print(f"  {color['yellow']}Data de Início: {atividade[2]}{Style.RESET_ALL}")
+            print(f"  {color['yellow']}Data de Fim: {atividade[3]}{Style.RESET_ALL}")
+            print(f"  {color['yellow']}Prioridade: {atividade[4]}{Style.RESET_ALL}")
 
         index = int(input("\nInforme o número da atividade que deseja editar: ")) - 1
         if 0 <= index < len(cadastro_atividades):
-            titulo = input("Novo título da atividade: ")
-            descricao = input("Nova descrição: ")
-            data_inicio = input("Nova data de início: ")
-            data_fim = input("Nova data de entrega: ")
-            prioridade = input("Novo nível de prioridade (Baixa, Média, Alta): ")
+            titulo = input(f"{color['yellow']}Novo título da atividade: {Style.RESET_ALL}")
+            descricao = input(f"{color['yellow']}Nova descrição: {Style.RESET_ALL}")
+            data_inicio = input(f"{color['yellow']}Nova data de início: {Style.RESET_ALL}")
+            data_fim = input(f"{color['yellow']}Nova data de entrega: {Style.RESET_ALL}")
+            prioridade = input(f"{color['yellow']}Novo nível de prioridade {Style.RESET_ALL}", f"({color['green']}Baixa, Média, Alta{Style.RESET_ALL}): ")
 
             cadastro_atividades[index] = [titulo, descricao, data_inicio, data_fim, prioridade]
             salvar_atividades()
-            print("Atividade editada com sucesso!")
+            print(f"{color['green']}Atividade editada com sucesso!{Style.RESET_ALL}")
     except (ValueError, IndexError):
-        print("Erro ao editar atividade. Tente novamente.")
+        print(f"{color['red']}Erro ao editar atividade. Tente novamente.{Style.RESET_ALL}")
 
 def excluir_atividade():
     try:
         for i, atividade in enumerate(cadastro_atividades, 1):
             print(f"\nAtividade {i}:")
-            print(f"  Título: {atividade[0]}")
-            print(f"  Descrição: {atividade[1]}")
-            print(f"  Data de Início: {atividade[2]}")
-            print(f"  Data de Fim: {atividade[3]}")
-            print(f"  Prioridade: {atividade[4]}")
+            print(f"  {color['yellow']}Título: {Style.RESET_ALL}{atividade[0]}")
+            print(f"  {color['yellow']}Descrição: {Style.RESET_ALL}{atividade[1]}")
+            print(f"  {color['yellow']}Data de Início: {Style.RESET_ALL}{atividade[2]}")
+            print(f"  {color['yellow']}Data de Fim: {Style.RESET_ALL}{atividade[3]}")
+            print(f"  {color['yellow']}Prioridade: {Style.RESET_ALL}{atividade[4]}")
 
         index = int(input("\nInforme o número da atividade que deseja excluir: ")) - 1
         if 0 <= index < len(cadastro_atividades):
             del cadastro_atividades[index]
             salvar_atividades()
-            print("Atividade excluída com sucesso!")
+            print(f"{color['green']}Atividade excluída com sucesso!{Style.RESET_ALL}")
         else:
-            print("Número de atividade inválido.")
+            print(f"{color['red']}Número de atividade inválido.{Style.RESET_ALL}")
     except (ValueError, IndexError):
         print("Erro ao excluir atividade. Tente novamente.")
 
 def visualizar_atividades():
     if not cadastro_atividades:
-        print("Nenhuma atividade cadastrada.")
+        print(f"{color['red']}Nenhuma atividade cadastrada.{Style.RESET_ALL}")
         return
 
     print("\n--- ATIVIDADES CADASTRADAS ---")
     for i, atividade in enumerate(cadastro_atividades, 1):
         print(f"\nAtividade {i}:")
-        print(f"  Título: {atividade[0]}")
-        print(f"  Descrição: {atividade[1]}")
-        print(f"  Data de Início: {atividade[2]}")
-        print(f"  Data de Fim: {atividade[3]}")
-        print(f"  Prioridade: {atividade[4]}")
+        print(f"  {color['yellow']}Título: {Style.RESET_ALL}{atividade[0]}")
+        print(f"  {color['yellow']}Descrição: {Style.RESET_ALL}{atividade[1]}")
+        print(f"  {color['yellow']}Data de Início: {Style.RESET_ALL}{atividade[2]}")
+        print(f"  {color['yellow']}Data de Fim: {Style.RESET_ALL}{atividade[3]}")
+        print(f"  {color['yellow']}Prioridade: {Style.RESET_ALL}{atividade[4]}")
 
 carregar_atividades()  
 
@@ -176,4 +187,4 @@ while True:
         print("Saindo...")
         break
     else:
-        print("Opção inválida. Tente novamente.")
+        print(f"{color['red']}Opção inválida. Tente novamente.{Style.RESET_ALL}")
