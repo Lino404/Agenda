@@ -40,9 +40,9 @@ while login_sucesso == False:
     print(f"{color['yellow']}║        Efetuar login(2)          ║{Style.RESET_ALL}")
     print(f"{color['yellow']}║                                  ║{Style.RESET_ALL}")
     print(f"{color['yellow']}╚══════════════════════════════════╝{Style.RESET_ALL}")
-    escolha = int(input(f"\n{color['cyan']}Selecione: {Style.RESET_ALL}"))
+    escolha = input(f"\n{color['cyan']}Selecione: {Style.RESET_ALL}")
 
-    if escolha == 1:
+    if escolha == '1':
         print("\n═══════════════════════════════════════════════\n")
         loginC = input(f"{color['cyan']}Cadastre seu Usuário: {Style.RESET_ALL}\n")
         senhaC = input(f"{color['cyan']}Cadastre sua senha(Minimo 8 caracteres): {Style.RESET_ALL}\n")
@@ -58,7 +58,7 @@ while login_sucesso == False:
         print("═══════════════════════════════════════════\n")
         login_sucesso = True
 
-    elif escolha == 2:
+    elif escolha == "2":
         login_sucesso = False
         while not login_sucesso:
             print("═══════════════════════════════════════════════")
@@ -91,6 +91,7 @@ while login_sucesso == False:
 cadastro_atividades = []
 
 def menu():
+    
     print(f"{color['yellow']}╔═════════════ MENU ═════════════╗{Style.RESET_ALL}")
     print(f"{color['yellow']}║                                ║{Style.RESET_ALL}")
     print(f"{color['yellow']}║  1. Cadastrar nova atividade   ║{Style.RESET_ALL}")
