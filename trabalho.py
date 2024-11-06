@@ -1,3 +1,4 @@
+import time
 import os
 from colorama import Fore, Style, init
 init()
@@ -9,7 +10,14 @@ color = {
     'yellow' : Fore.YELLOW
 }
 
-
+def saida():
+    os.system("cls")
+    for _ in range(3):
+        for i in range(1, 4):
+            print("Saindo" + "." * i)
+            time.sleep(0.5)
+            os.system("cls")
+            
 ##sistema de cadastro
 cadastros = []
 
@@ -204,7 +212,7 @@ while True:
     elif opcao == "4":
         visualizar_atividades()  
     elif opcao == "5":
-        print("Saindo...")
+        saida()
         break
     else:
         print(f"{color['red']}Opção inválida. Tente novamente.{Style.RESET_ALL}")
